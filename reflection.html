@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Concepts</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #fff;
+            --secondary: #888;
+            --accent: #0070f3;
+            --background: #000;
+            --card: #111;
+            --border: #333;
+            --hover: #222;
+            --code-bg: #1a1a1a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 4rem 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #0070f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        section {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,112,243,0.1);
+            border-color: var(--accent);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            background: linear-gradient(to right, #fff, #0070f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--primary);
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .algorithm {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .principle {
+            margin-top: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .connection {
+            margin-top: 0.5rem;
+            font-style: italic;
+            color: var(--secondary);
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid var(--border);
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 100;
+            margin-bottom: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            border-color: var(--accent);
+            background: var(--hover);
+        }
+
+        .technique-card {
+            background: var(--card);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .technique-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--secondary);
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        strong {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            .nav-links {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DAA Course Reflections</h1>
+            <p class="subtitle">A comprehensive guide to understanding algorithms and their real-world applications</p>
+        </header>
+
+        <nav>
+            <div class="nav-links">
+                <a href="#nature-problems">Natural Problems</a>
+                <a href="#efficiency">Efficiency</a>
+                <a href="#fundamental-techniques">Techniques</a>
+                <a href="#tree-structures">Trees</a>
+                <a href="#sorting-algorithms">Sorting</a>
+                <a href="#searching-algorithms">Searching</a>
+                <a href="#design-techniques">Design</a>
+            </div>
+        </nav>
+
+        <section id="nature-problems">
+            <h2>Problems in Nature</h2>
+            <ul>
+                <li>Searching for food in a menu</li>
+                <li>Arranging vegetables from the market</li>
+                <li>Adding ingredients while preparing food</li>
+                <li>Finding a lost key (search problem)</li>
+                <li>Drawing rangoli patterns (recursion)</li>
+                <li>Cleaning the floor (Breadth-First Search)</li>
+                <li>Traveling to new locations (Shortest Path Algorithm)</li>
+            </ul>
+        </section>
+
+        <section id="efficiency">
+            <h2>Time and Space Efficiency</h2>
+            <p>Understanding algorithm complexity and resource usage:</p>
+            <pre>O(1) < O(log(n)) < O(n) < O(n log(n)) < O(n²) < O(n³) < O(2ⁿ) < O(n!)</pre>
+        </section>
+
+        <section id="fundamental-techniques">
+            <h2>Fundamental Techniques</h2>
+            <div class="technique-card">
+                <h3>Core Concepts</h3>
+                <ul>
+                    <li>Decomposition: Breaking complex problems into manageable parts</li>
+                    <li>Pattern Recognition: Identifying recurring structures</li>
+                    <li>Abstraction: Focusing on essential features</li>
+                    <li>Traversal Techniques: Brave (DFS) and Cautious (BFS) approaches</li>
+                </ul>
+            </div>
+            
+            <div class="technique-card">
+                <h3>Advanced Techniques</h3>
+                <ul>
+                    <li>Lazy Propagation: Optimizing range updates</li>
+                    <li>Sliding Window: Analyzing overlapping sequences</li>
+                    <li>Edge Relaxation: Updating shortest path estimates</li>
+                    <li>Kleene Closure: Applying transitive properties</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="tree-structures">
+            <h2>Tree Data Structures</h2>
+            <ul>
+                <li><strong>Binary Search Tree (BST):</strong> Ordered structure for efficient operations</li>
+                <li><strong>AVL Tree:</strong> Self-balancing for consistent performance</li>
+                <li><strong>Red-Black Tree:</strong> Balanced tree with simpler rotation rules</li>
+                <li><strong>Trie:</strong> Specialized for string operations</li>
+                <li><strong>Heap:</strong> Priority queue implementation</li>
+            </ul>
+        </section>
+
+        <section id="sorting-algorithms">
+            <h2>Sorting Algorithms</h2>
+            <div class="technique-card">
+                <h3>Basic Sorting</h3>
+                <ul>
+                    <li>
+                        <span class="algorithm">Bubble Sort</span>
+                        <p class="principle">Repeatedly swaps adjacent elements until sorted</p>
+                        <p class="connection">Like bubbling items to the surface in a jar</p>
+                    </li>
+                    <li>
+                        <span class="algorithm">Selection Sort</span>
+                        <p class="principle">Finds minimum element and places it in position</p>
+                        <p class="connection">Similar to arranging cards in hand</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="technique-card">
+                <h3>Advanced Sorting</h3>
+                <ul>
+                    <li>
+                        <span class="algorithm">Quick Sort</span>
+                        <p class="principle">Uses pivoting and partitioning strategy</p>
+                        <p class="connection">Like organizing books around a reference point</p>
+                    </li>
+                    <li>
+                        <span class="algorithm">Merge Sort</span>
+                        <p class="principle">Divides and merges sorted subsequences</p>
+                        <p class="connection">Similar to merging sorted piles of papers</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="searching-algorithms">
+            <h2>Searching Algorithms</h2>
+            <ul>
+                <li>
+                    <span class="algorithm">Binary Search</span>
+                    <p class="principle">Efficiently searches sorted arrays by halving</p>
+                </li>
+                <li>
+                    <span class="algorithm">Depth-First Search (DFS)</span>
+                    <p class="principle">Explores as far as possible along branches</p>
+                </li>
+                <li>
+                    <span class="algorithm">Breadth-First Search (BFS)</span>
+                    <p class="principle">Explores neighbor nodes first</p>
+                </li>
+                <li>
+                    <span class="algorithm">A* Search</span>
+                    <p class="principle">Uses heuristics for pathfinding</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="design-techniques">
+            <h2>Algorithm Design Techniques</h2>
+            <div class="technique-card">
+                <h3>Divide and Conquer</h3>
+                <ul>
+                    <li>Break problems into smaller subproblems</li>
+                    <li>Solve subproblems recursively</li>
+                    <li>Combine solutions for final result</li>
+                </ul>
+            </div>
+
+            <div class="technique-card">
+                <h3>Dynamic Programming</h3>
+                <ul>
+                    <li>Store solutions to subproblems</li>
+                    <li>Build larger solutions from stored results</li>
+                    <li>Optimize overlapping subproblems</li>
+                </ul>
+            </div>
+
+            <div class="technique-card">
+                <h3>Greedy Algorithms</h3>
+                <ul>
+                    <li>Make locally optimal choices</li>
+                    <li>Build solution incrementally</li>
+                    <li>Optimize for immediate benefit</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2024 Shreyas Kulkarni. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
