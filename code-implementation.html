@@ -1,230 +1,386 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
+    <title>Algorithm Concepts</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #141414;
-            color: #f5f5f5;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+        :root {
+            --primary: #fff;
+            --secondary: #fff;  /* Changed from #888 to #fff */
+            --accent: #0070f3;
+            --background: #000;
+            --card: #111;
+            --border: #333;
+            --hover: #222;
+            --code-bg: #1a1a1a;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        h1,
-        h2 {
-            text-decoration: underline;
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            background: var(--background);
         }
 
-        h1 {
-            text-align: center;
-            color: #f5f5f5;
-            font-size: 2.5em;
-            margin-top: 20px;
-        }
-
-        h2 {
-            font-size: 1.8em;
-            margin-top: 20px;
-            color: #203664;
-        }
-
-        p,
-        li {
-            font-size: 1.1em;
-            margin: 10px 0;
-        }
-
-        ul {
-            list-style: disc;
-            margin-left: 20px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
         }
 
         header {
-            background: linear-gradient(90deg,#f5f5f5 , #203664);
-            padding: 20px;
             text-align: center;
+            margin-bottom: 4rem;
+            padding: 4rem 0;
         }
 
-        header img {
-            max-width: 100%;
-            height: auto;
-            margin-top: 15px;
-            border-radius: 10px;
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #0070f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--secondary);  /* Will now use white */
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         section {
-            background: #0a0a0a;
-            color: #0a0009;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 800px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: var(--card);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,112,243,0.1);
+            border-color: var(--accent);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            background: linear-gradient(to right, #fff, #0070f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--primary);
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--secondary);  /* Will now use white */
+        }
+
+        li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .algorithm {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .principle {
+            margin-top: 0.5rem;
+            color: var(--secondary);  /* Will now use white */
+        }
+
+        .connection {
+            margin-top: 0.5rem;
+            font-style: italic;
+            color: var(--secondary);  /* Will now use white */
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid var(--border);
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 100;
+            margin-bottom: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            border-color: var(--accent);
+            background: var(--hover);
+        }
+
+        .technique-card {
+            background: var(--card);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .technique-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
         }
 
         footer {
             text-align: center;
-            background: #282c34;
-            padding: 10px 0;
-            color: #ccc;
-            margin-top: 20px;
+            padding: 2rem;
+            color: var(--secondary);  /* Will now use white */
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
         }
 
-        a {
-            color: #175b89;
-            text-decoration: none;
-            font-weight: bold;
+        p {
+            margin-bottom: 1rem;
+            color: var(--secondary);  /* Will now use white */
         }
 
-        a:hover {
-            text-decoration: underline;
+        strong {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            .nav-links {
+                justify-content: flex-start;
+            }
         }
     </style>
 </head>
-
 <body>
-    <header>
-        <h1>Utilizing algorithms to enhance efficiency and decision-making in various sectors</h1>
-       
-    </header>
+    <div class="container">
+        <header>
+            <h1>DAA Course Reflections</h1>
+            <p class="subtitle">A comprehensive guide to understanding algorithms and their real-world applications</p>
+        </header>
 
-    <section>
-        <h2>Education Sector</h2>
-        <p>Applications of algorithms in the education domain:</p>
-        <ol>
-            <li><strong>Organizing Student Rankings</strong><br><em>Algorithm Used: Bubble Sort</em><br>Bubble Sort
-                helps arrange students based on their grades in ascending or descending order, ensuring fair
-                ranking.<br><a
-                                href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Bellman-Ford.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Scheduling Classes</strong><br><em>Algorithm Used: Selection Sort</em><br>Selection Sort is used
-                to organize class schedules efficiently based on session durations or priorities.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Selection%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Maintaining Attendance Records</strong><br><em>Algorithm Used: Insertion Sort</em><br>Insertion
-                Sort ensures that attendance records are kept sorted as new entries are added dynamically.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Insertion%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Top Performer Identification</strong><br><em>Algorithm Used: Heap Sort</em><br>Heap Sort is used
-                to identify the top performers in academics or extracurricular activities.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Heap%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Combining Exam Results</strong><br><em>Algorithm Used: Merge Sort</em><br>Merge Sort combines
-                and sorts results from multiple exams to generate a unified ranking.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Merge%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Sorting Library Books</strong><br><em>Algorithm Used: Quick Sort</em><br>Quick Sort efficiently
-                organizes library books by title, author, or category.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Quick%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Efficient Name Search</strong><br><em>Algorithm Used: Trie</em><br>Trie structures enable quick
-                and efficient searching of student names in large databases.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Trie.cpp" target="_blank">View
-                    on GitHub</a></li>
-            <li><strong>Optimizing Transport Routes</strong><br><em>Algorithm Used: Dijkstra's
-                    Algorithm</em><br>Dijkstra's Algorithm identifies the shortest and most cost-effective routes for
-                student transportation.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Dijkstras.cpp"
-                    target="_blank">View on
-                    GitHub</a></li>
-            <li><strong>Planning Inter-College Events</strong><br><em>Algorithm Used: Floyd-Warshall
-                    Algorithm</em><br>Floyd-Warshall compares all possible routes for inter-college events, finding the
-                most efficient paths.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Floyd-Warshall.cpp"
-                    target="_blank">View on
-                    GitHub</a></li>
-            <li><strong>Managing Transport Costs</strong><br><em>Algorithm Used: Bellman-Ford
-                    Algorithm</em><br>Bellman-Ford calculates optimal transportation costs even with variable pricing
-                factors.<br><a href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Bellman-Ford.cpp"
-                    target="_blank">View on GitHub</a></li>
-        </ol>
-    </section>
+        <nav>
+            <div class="nav-links">
+                <a href="#nature-problems">Natural Problems</a>
+                <a href="#efficiency">Efficiency</a>
+                <a href="#fundamental-techniques">Techniques</a>
+                <a href="#tree-structures">Trees</a>
+                <a href="#sorting-algorithms">Sorting</a>
+                <a href="#searching-algorithms">Searching</a>
+                <a href="#design-techniques">Design</a>
+            </div>
+        </nav>
 
-    <section>
-        <h2>Technological Sector</h2>
-        <p>Applications of algorithms in technology-driven processes:</p>
-        <ol>
-            <li><strong>Debugging Logs</strong><br><em>Algorithm Used: Bubble Sort</em><br>Bubble Sort organizes error
-                logs by timestamps, making debugging more systematic.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Bubble%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Prioritizing Feature Requests</strong><br><em>Algorithm Used: Selection Sort</em><br>Selection
-                Sort arranges feature requests based on priority levels, optimizing development workflows.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Selection%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Real-Time Packet Sorting</strong><br><em>Algorithm Used: Insertion Sort</em><br>Insertion Sort
-                ensures real-time sorting of incoming network packets for seamless processing.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Insertion%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Efficient Resource Allocation</strong><br><em>Algorithm Used: Heap Sort</em><br>Heap Sort
-                allocates system resources to critical tasks, maximizing operational efficiency.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Heap%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Merging Distributed Logs</strong><br><em>Algorithm Used: Merge Sort</em><br>Merge Sort combines
-                logs from distributed systems into a unified, ordered dataset.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Merge%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Sorting Big Data</strong><br><em>Algorithm Used: Quick Sort</em><br>Quick Sort efficiently
-                processes and organizes large datasets for analytics.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Quick%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Predictive Text Search</strong><br><em>Algorithm Used: Trie</em><br>Trie enables fast and
-                accurate predictive text for search engines or typing aids.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Trie.cpp" target="_blank">View
-                    on GitHub</a></li>
-            <li><strong>Detecting Plagiarism</strong><br><em>Algorithm Used: Rabin-Karp Algorithm</em><br>Rabin-Karp
-                identifies duplicate content efficiently in large codebases or documents.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Rabin-Karp.cpp"
-                    target="_blank">View on GitHub</a></li>
-            <li><strong>Dynamic Data Hashing</strong><br><em>Algorithm Used: Rolling Hash</em><br>Rolling Hash
-                dynamically updates hashed values for continuous or changing datasets.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Rolling%20Hash.cpp"
-                    target="_blank">View on GitHub</a></li>
-        </ol>
-    </section>
+        <section id="nature-problems">
+            <h2>Problems in Nature</h2>
+            <ul>
+                <li>Searching for food in a menu</li>
+                <li>Arranging vegetables from the market</li>
+                <li>Adding ingredients while preparing food</li>
+                <li>Finding a lost key (search problem)</li>
+                <li>Drawing rangoli patterns (recursion)</li>
+                <li>Cleaning the floor (Breadth-First Search)</li>
+                <li>Traveling to new locations (Shortest Path Algorithm)</li>
+            </ul>
+        </section>
 
-    <section>
-        <h2>Waste Management</h2>
-        <p>Applications of algorithms in managing and optimizing waste:</p>
-        <ol>
-            <li><strong>Organizing Waste by Type</strong><br><em>Algorithm Used: Bubble Sort</em><br>Bubble Sort
-                categorizes waste materials by type, aiding in efficient recycling processes.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Bubble%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Prioritizing High-Value Materials</strong><br><em>Algorithm Used: Selection
-                    Sort</em><br>Selection Sort prioritizes the recycling of materials based on their economic
-                value.<br><a href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Selection%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Categorizing Incoming Waste</strong><br><em>Algorithm Used: Insertion Sort</em><br>Insertion
-                Sort organizes incoming waste for efficient sorting and processing.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Insertion%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Managing Processing Queues</strong><br><em>Algorithm Used: Heap Sort</em><br>Heap Sort optimizes
-                the order of waste processing queues to maximize throughput.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Heap%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Merging Waste Records</strong><br><em>Algorithm Used: Merge Sort</em><br>Merge Sort consolidates
-                waste data from multiple centers for better analysis.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Merge%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Optimizing Recycling Processes</strong><br><em>Algorithm Used: Quick Sort</em><br>Quick Sort
-                organizes waste for faster and more efficient recycling.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Quick%20Sort.cpp" target="_blank">View on GitHub</a></li>
-            <li><strong>Efficient Waste Search</strong><br><em>Algorithm Used: Trie</em><br>Trie structures assist in
-                categorizing and searching waste types in databases.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Trie.cpp" target="_blank">View
-                    on GitHub</a></li>
-            <li><strong>Optimizing Collection Routes</strong><br><em>Algorithm Used: Dijkstra's
-                    Algorithm</em><br>Dijkstra's Algorithm minimizes collection costs by identifying the shortest
-                routes.<br><a href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Dijkstras.cpp"
-                    target="_blank">View on GitHub</a></li>
-            <li><strong>Designing Collection Networks</strong><br><em>Algorithm Used: Prim's Algorithm</em><br>Prim's
-                Algorithm helps build cost-effective waste collection networks.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Prim's.cpp" target="_blank">View
-                    on GitHub</a></li>
-            <li><strong>Identifying Recyclable Patterns</strong><br><em>Algorithm Used: KMP Algorithm</em><br>The KMP
-                Algorithm matches patterns to identify recyclable waste in mixed loads.<br><a
-                    href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/KMP.cpp" target="_blank">View on
-                    GitHub</a></li>
-            <li><strong>Sorting Waste by Category</strong><br><em>Algorithm Used: Merge Sort</em><br>Merge Sort helps
-                group and categorize waste for optimal disposal.<br><a href="https://github.com/Shivakumar-Kenjadimath/daa-portfolio/blob/main/Merge%20Sort.cpp"
-                    target="_blank">View on GitHub</a></li>
-        </ol>
-    </section>
+        <section id="efficiency">
+            <h2>Time and Space Efficiency</h2>
+            <p>Understanding algorithm complexity and resource usage:</p>
+            <pre>O(1) < O(log(n)) < O(n) < O(n log(n)) < O(n²) < O(n³) < O(2ⁿ) < O(n!)</pre>
+        </section>
 
-    <footer>
-        <p>&copy; 2024 Logistics and Supply Chain Team. All rights reserved.</p>
-    </footer>
+        <section id="fundamental-techniques">
+            <h2>Fundamental Techniques</h2>
+            <div class="technique-card">
+                <h3>Core Concepts</h3>
+                <ul>
+                    <li>Decomposition: Breaking complex problems into manageable parts</li>
+                    <li>Pattern Recognition: Identifying recurring structures</li>
+                    <li>Abstraction: Focusing on essential features</li>
+                    <li>Traversal Techniques: Brave (DFS) and Cautious (BFS) approaches</li>
+                </ul>
+            </div>
+            
+            <div class="technique-card">
+                <h3>Advanced Techniques</h3>
+                <ul>
+                    <li>Lazy Propagation: Optimizing range updates</li>
+                    <li>Sliding Window: Analyzing overlapping sequences</li>
+                    <li>Edge Relaxation: Updating shortest path estimates</li>
+                    <li>Kleene Closure: Applying transitive properties</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="tree-structures">
+            <h2>Tree Data Structures</h2>
+            <ul>
+                <li><strong>Binary Search Tree (BST):</strong> Ordered structure for efficient operations</li>
+                <li><strong>AVL Tree:</strong> Self-balancing for consistent performance</li>
+                <li><strong>Red-Black Tree:</strong> Balanced tree with simpler rotation rules</li>
+                <li><strong>Trie:</strong> Specialized for string operations</li>
+                <li><strong>Heap:</strong> Priority queue implementation</li>
+            </ul>
+        </section>
+
+        <section id="sorting-algorithms">
+            <h2>Sorting Algorithms</h2>
+            <div class="technique-card">
+                <h3>Basic Sorting</h3>
+                <ul>
+                    <li>
+                        <span class="algorithm">Bubble Sort</span>
+                        <p class="principle">Repeatedly swaps adjacent elements until sorted</p>
+                        <p class="connection">Like bubbling items to the surface in a jar</p>
+                    </li>
+                    <li>
+                        <span class="algorithm">Selection Sort</span>
+                        <p class="principle">Finds minimum element and places it in position</p>
+                        <p class="connection">Similar to arranging cards in hand</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="technique-card">
+                <h3>Advanced Sorting</h3>
+                <ul>
+                    <li>
+                        <span class="algorithm">Quick Sort</span>
+                        <p class="principle">Uses pivoting and partitioning strategy</p>
+                        <p class="connection">Like organizing books around a reference point</p>
+                    </li>
+                    <li>
+                        <span class="algorithm">Merge Sort</span>
+                        <p class="principle">Divides and merges sorted subsequences</p>
+                        <p class="connection">Similar to merging sorted piles of papers</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="searching-algorithms">
+            <h2>Searching Algorithms</h2>
+            <ul>
+                <li>
+                    <span class="algorithm">Binary Search</span>
+                    <p class="principle">Efficiently searches sorted arrays by halving</p>
+                </li>
+                <li>
+                    <span class="algorithm">Depth-First Search (DFS)</span>
+                    <p class="principle">Explores as far as possible along branches</p>
+                </li>
+                <li>
+                    <span class="algorithm">Breadth-First Search (BFS)</span>
+                    <p class="principle">Explores neighbor nodes first</p>
+                </li>
+                <li>
+                    <span class="algorithm">A* Search</span>
+                    <p class="principle">Uses heuristics for pathfinding</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="design-techniques">
+            <h2>Algorithm Design Techniques</h2>
+            <div class="technique-card">
+                <h3>Divide and Conquer</h3>
+                <ul>
+                    <li>Break problems into smaller subproblems</li>
+                    <li>Solve subproblems recursively</li>
+                    <li>Combine solutions for final result</li>
+                </ul>
+            </div>
+
+            <div class="technique-card">
+                <h3>Dynamic Programming</h3>
+                <ul>
+                    <li>Store solutions to subproblems</li>
+                    <li>Build larger solutions from stored results</li>
+                    <li>Optimize overlapping subproblems</li>
+                </ul>
+            </div>
+
+            <div class="technique-card">
+                <h3>Greedy Algorithms</h3>
+                <ul>
+                    <li>Make locally optimal choices</li>
+                    <li>Build solution incrementally</li>
+                    <li>Optimize for immediate benefit</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2024 Shivakumar K. All rights reserved.</p>
+        </footer>
+    </div>
 </body>
-
 </html>
